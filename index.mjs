@@ -236,6 +236,7 @@ const mainEndpoints = [
   "/eths/filtered?filters=here - use `only=creator,id,timestamp` to get only those fields; use `without=creator,id` to get all fields except those; use `mimetype={mimetype}` to get only ethscriptions with this mimetype",
   "/eths/owned_by/{address_or_ens_or_handle} - ethscriptionns owned by user",
   "/eths/{ethscription_id_or_number} - get ethscription by id or number",
+  "/eths/{ethscription_id_or_number}/data - raw content of the ethscription; add ?noscale=1 to disable auto-upscaling",
   "/eths/{ethscription_id_or_number}/sha - get ethscription and it's sha",
 ];
 
