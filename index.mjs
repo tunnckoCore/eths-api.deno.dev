@@ -258,6 +258,9 @@ const endpoints = networks.reduce(
   [
     "/v1/sha?of={dataURI} - create sha256 of a given data URI or text; if it starts with `data:`, it will be used as is; otherwise, you can additionally pass `type` and/or `isBase64` query params",
     "/v1/snapshot/{collection_name} - can take a while (~1min per 10k); create a snapshot of a given collection; possible `only=` filters: holders, creators, items, stats, unique",
+    "/v1/generate/account - create a fresh new Ethereum wallet - returns a public/private key, mnemonic and address",
+    "/v1/generate/mnemonic - create only a new mnemonic",
+    "/v1/generate/private-key - create only a new private key",
     "",
   ],
 );
@@ -430,21 +433,21 @@ Deno.serve(async (req) => {
   let resolvedProfile = null;
 
   try {
-    if (url.pathname.endsWith("generate-account")) {
+    if (url.pathname.endsWith("generate/account")) {
       const data = createAccount();
       return Response.json(
         { data },
         { status: 200, headers: { ...corsHeaders } },
       );
     }
-    if (url.pathname.endsWith("generate-private-key")) {
+    if (url.pathname.endsWith("generate/private-key")) {
       const data = generatePrivateKey();
       return Response.json(
         { data },
         { status: 200, headers: { ...corsHeaders } },
       );
     }
-    if (url.pathname.endsWith("generate-mnemonic")) {
+    if (url.pathname.endsWith("generate/mnemonic")) {
       const data = generateMnemonic();
       return Response.json(
         { data },
